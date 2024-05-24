@@ -17,7 +17,12 @@ use App\Models\Room;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/', function () {
+    $hotels = Hotel::all();
+    $packages = Package::all();
+    $destination = Destination::all();
+    return view('frontend.pages.home', compact('hotels', 'packages', 'destination'));
+});
 
 Auth::routes();
 
@@ -34,8 +39,8 @@ Route::resource('/admin/guide', GuideController::class);
 Route::resource('/admin/hotel', HotelController::class);
 Route::resource('/admin/package', PackageController::class);
 Route::resource('/admin/room', RoomController::class);
-Route::post('/bookroom',[HotelBookingController::class,'store']);
-Route::post('/visitor',[VisitorController::class,'store']);
+Route::post('/bookroom', [HotelBookingController::class, 'store']);
+Route::post('/visitor', [VisitorController::class, 'store']);
 
 //
 
