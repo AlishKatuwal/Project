@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('city_id')->constrained('cities')->onDelete('cascade');
             $table->longText('description');
             $table->string('image')->nullable();
-            $table->string('gallery')->nullable();
+            $table->longText('gallery')->nullable();
             $table->float('rating')->nullable();
             $table->string('contact_email');
             $table->string('contact_phone');

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Destination;
 use App\Models\Hotel;
+use App\Models\Package;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -25,6 +27,8 @@ class HomeController extends Controller
     public function index()
     {
         $hotels = Hotel::all();
-        return view('frontend.pages.home', compact('hotels'));
+        $packages = Package::all();
+        $destination = Destination::all();
+        return view('frontend.pages.home', compact('hotels', 'packages', 'destination'));
     }
 }

@@ -115,13 +115,14 @@ class DestinationController extends Controller
                 $newName = time() . $file->getClientOriginalName();
                 $file->move('uploads/destination', $newName);
                 $data = [
-                    'images' => 'uploads/destination/' . $newName,
+                    'path' => 'uploads/destination/' . $newName,
                     'type' => $file->getClientMimeType()
                 ];
-                $content[] = $data;
+                $images[] = $data;
             }
             $destination->images = json_encode($images);
         }
+
         // video
         if ($request->hasFile('video')) {
             $newName = time() . $request->file('video')->getClientOriginalName();

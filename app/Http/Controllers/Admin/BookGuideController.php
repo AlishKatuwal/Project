@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\BookGuide;
 use Illuminate\Http\Request;
 
 class BookGuideController extends Controller
@@ -28,7 +29,12 @@ class BookGuideController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            
+        ]);
+
+        $guideBooking = new BookGuide();
+
     }
 
     /**

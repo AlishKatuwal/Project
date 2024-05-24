@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->longText('description');
             $table->string('images')->nullable();
-            $table->string('video')->nullable();
+            $table->mediumText('video')->nullable();
             $table->foreignId('city_id')->constrained('cities')->onDelete('cascade');
             $table->string('address');
-            $table->string('location')->nullable();
+            $table->longText('location')->nullable();
             $table->timestamps();
         });
     }

@@ -1,52 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nepal wonders</title>
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="{{ asset('frontend/style.css') }}">
-    <script defer src="{{ asset('frontend/script.js') }}"></script>
-</head>
-
-<body>
-    <!-- Header starting -->
-    <header>
-        <div id="menu-bar" class="fas fa-bars"></div>
-        <img src="{{ asset('frontend/logo.jpg') }}" class="logo">
-        <nav class="navbar navbar-active">
-            <a href="#" class="link">Home</a>
-            <a href="#contact" class="link">Contact</a>
-            <a href="#gallery" class="link">Gallery</a>
-            <a href="#packages" class="link">Pacakges</a>
-        </nav>
-        <div class="icons">
-            <i class="fas fa-search" id="search-btn"></i>
-            <i class="fas fa-user" id="login-btn"></i>
-        </div>
-        <form action="" class="search-bar-container">
-            <input type="search" id="search-bar" placeholder="search here">
-            <label for="search-bar" class="fas fa-search"></label>
-        </form>
-    </header>
-    <!-- ends -->
-    <!--form-->
-    <div class="login-form-container">
-        <i class="fas fa-times" id="form-close"></i>
-
-        <form action="">
-            <h3>Login</h3>
-            <input type="email" class="box" placeholder="enter your email">
-            <input type="password" class="box" placeholder="enter your password">
-            <input type="submit" value="login now" class="btn">
-            <input type="checkbox" id="remember">
-            <label for="remember">Remember me</label>
-            <p>Forget password? <a href="#">click here</a></p>
-            <p>Don't have and account? <a href="#">Create one</a></p>
-        </form>
-    </div>
+@section('content')
     <!-- //home section -->
     <section class="home" id="home">
         <div class="content">
@@ -64,8 +18,8 @@
         </div>
 
         <div class="video-container">
-            <video src="{{ asset('frontend/The Soaltee Kathmandu _ Five Star Hotel _ Nepal.mp4') }}" id="video-slider"
-                loop autoplay muted></video>
+            <video src="{{ asset('frontend/The Soaltee Kathmandu _ Five Star Hotel _ Nepal.mp4') }}" id="video-slider" loop
+                autoplay muted></video>
         </div>
     </section>
     <!-- home section ends -->
@@ -85,22 +39,31 @@
             <div class="image">
                 <img src="" alt="">
             </div>
-            <form action="">
+            <form action="/visitor" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="inputBox">
+                    <h3>Your Name</h3>
+                    <input type="text" placeholder="Name" name="name">
+                </div>
+                <div class="inputBox">
+                    <h3>Email:</h3>
+                    <input type="email" placeholder="email" name="email">
+                </div>
                 <div class="inputBox">
                     <h3>where to?</h3>
-                    <input type="text" placeholder="place">
+                    <input type="text" placeholder="place" name="place">
                 </div>
                 <div class="inputBox">
                     <h3>How many?</h3>
-                    <input type="number" placeholder="Number of Guests">
+                    <input type="number" placeholder="total person" name="total_visitor">
                 </div>
                 <div class="inputBox">
                     <h3>Arrivals</h3>
-                    <input type="date">
+                    <input type="date" name="arrival">
                 </div>
                 <div class="inputBox">
                     <h3>Leaving</h3>
-                    <input type="date">
+                    <input type="date" name="leaving">
                 </div>
                 <input type="submit" class="btn" value="book now">
             </form>
@@ -131,14 +94,14 @@
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                         </div>
-                        <a href="#" class="btn">View</a>
+                        <a href="/hotel/{{ $item->id }}" class="btn">View</a>
                     </div>
-                </div>    
+                </div>
             @endforeach
         </div>
     </section>
     {{-- Packages --}}
-    <section class="packages" id="packages">
+    {{-- <section class="packages" id="packages">
         <h1 class="heading">
             <span>P</span>
             <span>A</span>
@@ -150,48 +113,24 @@
             <span>S</span>
         </h1>
         <div class="container">
-            <div class="hotel">
-              <div class="hotel-details">
-                <h2>Hotel A</h2>
-                <p>Enjoy a luxurious stay at Hotel A and avail the following offer:</p>
-                <ul>
-                  <li><span class="offer">50% off</span> on all room types</li>
-                  <li>Complimentary breakfast included</li>
-                  <li>Access to gym and spa facilities</li>
-                </ul>
-                <button class="view-button">View Hotel</button>
-              </div>
-              <img class="hotel-image" src="https://via.placeholder.com/200" alt="Hotel A Image">
-            </div>
-            <div class="hotel">
-              <div class="hotel-details">
-                <h2>Hotel B</h2>
-                <p>Experience the beauty of Hotel B with the following special offer:</p>
-                <ul>
-                  <li><span class="offer">Stay 3 nights, pay for 2</span></li>
-                  <li>Free airport shuttle service</li>
-                  <li>Complimentary welcome drink</li>
-                </ul>
-                <button class="view-button">View Hotel</button>
-              </div>
-              <img class="hotel-image" src="https://via.placeholder.com/200" alt="Hotel B Image">
-            </div>
-            <div class="hotel">
-              <div class="hotel-details">
-                <h2>Hotel C</h2>
-                <p>Indulge in comfort at Hotel C and enjoy the exclusive offer:</p>
-                <ul>
-                  <li><span class="offer">20% off</span> on suite bookings</li>
-                  <li>Complimentary Wi-Fi throughout the stay</li>
-                  <li>Access to rooftop pool and bar</li>
-                </ul>
-                <button class="view-button">View Hotel</button>
-              </div>
-              <img class="hotel-image" src="https://via.placeholder.com/200" alt="Hotel C Image">
-            </div>
-          </div>
-    </section>
-    {{-- Packages End--}}
+            @foreach ($packages as $item)
+                <div class="hotel">
+                    <div class="hotel-details">
+                        <h2>{{ $item->hotel->name }}</h2>
+                        <p>Enjoy a luxurious stay at Hotel A and avail the following offer:</p>
+                        <ul>
+                            <li><span class="offer">50% off</span> on all room types</li>
+                            <li>Complimentary breakfast included</li>
+                            <li>Access to gym and spa facilities</li>
+                        </ul>
+                        <button class="view-button">View Hotel</button>
+                    </div>
+                    <img class="hotel-image" src="https://via.placeholder.com/200" alt="Hotel A Image">
+                </div>
+            @endforeach
+        </div>
+    </section> --}}
+    {{-- Packages End --}}
     {{-- Destination --}}
     <section class="packages" id="packages">
         <h1 class="heading">
@@ -207,14 +146,21 @@
             <span>O</span>
             <span>N</span>
         </h1>
-        <div class="box-container">
-            <div class="box">
-                <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/454287263.jpg?k=f32505ed61e91dcea0f896e8c2dc8a6b20d19bf8a3846155d1e33c6fcd529db4&o=&hp=1"
-                    alt="">
+        @foreach ($destination as $item)
+            <div class="box-container">
+                <div class="box">
+                    @php
+                        $images = json_decode($item->images);
+                    @endphp
+                    @foreach ($images as $image)
+                        <img src="{{ asset($image->path) }}" alt="">
+                        {{-- break --}}
+                    @break
+                @endforeach
                 <div class="content">
-                    <h3></i>Soaltee Hotel</i></h3>
-                    <p>Discover the beauty of Nepal with us. Nepal is one of the most beautiful countries in the world
-                        hahaha you think.</p>
+                    <h3></i>{{ $item->name }}</i></h3>
+                    <p>{{ $item->image }}</p>
+                    <p>{{ $item->description }}</p>
                     <div class="stars">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -222,12 +168,12 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                     </div>
-                    <div class="price">$90 <span>$120</span></div>
-                    <a href="#" class="btn">Book Now</a>
+                    <a href="/destination/{{ $item->id }}" class="btn">View</a>
                 </div>
             </div>
-            </div>
-        {{-- Destination Ends --}}
+        </div>
+    @endforeach
+    {{-- Destination Ends --}}
     <section class="services" id="services">
         <h1 class="heading">
             <span>S</span>
@@ -408,7 +354,4 @@
 
             </div>
     </section>
-    <script defer src="{{ asset('frontend/script.js') }}"></script>
-</body>
-
-</html>
+@endsection

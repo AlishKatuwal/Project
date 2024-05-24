@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\HotelBooking;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HotelBookingController extends Controller
 {
@@ -28,7 +30,26 @@ class HotelBookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'hotel_id' => 'required',
+            'check_in_date' => 'required',
+            'check_out_date' => 'required',
+            'total_amount' => 'required',
+        ]);
+
+        $booking = new HotelBooking();
+        $booking->hotel_id = $request->hotel_id;
+        $booking->user_id = Auth::user()->id;
+        $booking->room_id = $request->room_id;
+        $booking->package_id = $request->package_id;
+        $booking->check_in_date = $request->check_in_date;
+        $booking->check_out_date = $request->check_out_date;
+        $booking->total_amount = $request->total_amount;
+        $booking->booking_code = 'nepalwonder' . rand(1111, 99999).$request->hotel_id;
+
+        $booking->save();
+        return redirect()->back()->with('success','booking created successfully');
+
     }
 
     /**

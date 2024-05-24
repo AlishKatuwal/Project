@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('check_in_date');
             $table->date('check_out_date');
             $table->string('payment_method')->default('cash');
-            $table->string('booking_status');
+            $table->string('booking_status')->default('pending');
             $table->double('total_amount');
             $table->string('booking_code');
             $table->boolean('payment_status')->default(0);
