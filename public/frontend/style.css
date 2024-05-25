@@ -533,7 +533,7 @@ body {
 
 .packages .box-container .box img {
     height: 25rem;
-    width: 100%;
+    width:auto;
     object-fit: cover;
 }
 
