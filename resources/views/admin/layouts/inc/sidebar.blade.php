@@ -287,6 +287,36 @@
                     </ul>
                 </li>
                 <li class="nav-item">
+                    <a href="#"
+                        class="nav-link {{ request()->is('admin/destinationBooking') ? 'active' : '' }} || {{ request()->is('admin/hotelBooking') ? 'active' : '' }}">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <p>
+                            Bookings
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/admin/destinationBooking"
+                                class="nav-link {{ request()->is('admin/destinationBooking') ? 'active' : '' }}">
+                                <i class="fa-solid fa-plus"></i>
+                                <p>
+                                    Destination
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/hotelBooking"
+                                class="nav-link {{ request()->is('admin/hotelBooking') ? 'active' : '' }}">
+                                <i class="fa-solid fa-table"></i>
+                                <p>
+                                    Hotel
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
                     <form action="{{ route('logout') }}" method="post">
                         @csrf
                         <button class="btn btn-block btn-danger">logout</button>

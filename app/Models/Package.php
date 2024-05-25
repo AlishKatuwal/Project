@@ -14,4 +14,10 @@ class Package extends Model
     {
         return $this->belongsTo(Hotel::class);
     }
+
+    //belongs to booking
+    public function booking()
+    {
+        return $this->hasMany(HotelBooking::class);
+    }
 }

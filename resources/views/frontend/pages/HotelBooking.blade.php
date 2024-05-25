@@ -203,6 +203,7 @@
             </select>
         </div> --}}
         <h3>Rooms</h3>
+        
         @foreach ($hotel->rooms as $item)
             <div class="room">
                 <div class="room-details">

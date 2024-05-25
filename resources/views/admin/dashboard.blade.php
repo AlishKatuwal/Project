@@ -5,6 +5,8 @@
         </h2>
     </x-slot>
     <div class="container mt-5">
-        <h1>Hello</h1>
+        <div class="card">
+            <img src="{{ asset('frontend/mountain.jpg') }}" width="100%" height="60%" alt="">
+        </div>
     </div>
 </x-app-layout>

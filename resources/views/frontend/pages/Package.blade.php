@@ -171,6 +171,16 @@
             <div>{!! $package->description !!}</div>
         </div>
         <h3>Book Now</h3>
+        {{-- if error alert --}}
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach 
+                </ul>
+            </div>
+        @endif
         <form action="/bookroom" method="post" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="hotel_id" value="{{ $package->hotel_id }}">
